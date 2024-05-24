@@ -13,17 +13,21 @@ This project aims to build a comprehensive sales data pipeline for data processi
 4. Create the required database, user, and password as needed. Follow the steps below to create them. After step 3
     Run the below commands as in the same order
     # Create Role
-    CREATE ROLE data_engineer WITH LOGIN PASSWORD 'data_1234';
+    CREATE ROLE data_processor WITH LOGIN PASSWORD 'data_1234';
     # Create DB Permission
-    ALTER ROLE data_engineer CREATEDB;
+    ALTER ROLE data_processor CREATEDB;
     # List Users to validate
     \du
     # Exit using ctrl d
     # Login with data_engineer
-    psql postgres -U data_engineer
+    psql postgres -U data_processor
     # Create database
-    CREATE DATABASE sale_data_pipeline
+    CREATE DATABASE sale_data_pipeline_db;
+   # List the database
+   \l
+
    
+   Now the database is created. 
 5. Edit database.ini with the required details based on step 4
    host=localhost
    database=<< >>>>
@@ -35,8 +39,15 @@ This project aims to build a comprehensive sales data pipeline for data processi
         pip install -r requirements.txt
 
 
-7. Execute the scripts star_schema_creation.py and main.py for further setup and data processing tasks.
+7. Execute the scripts star_schema_creation.py and follow below commands to see the tables created
+   psql postgres -U data_processor
+   \connect sale_data_pipeline_db
+   \dt
 
+
+8. Execute main.py for further setup and data processing tasks.
+   
+    
 
 ## Design Guide
 The complete Design Guide is [Link to Document](https://docs.google.com/document/d/162lUV1GhjqNqfAshrTTqNNqmOZCglqc6XY1EeqssSo0/edit)
