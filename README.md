@@ -12,22 +12,20 @@ This project aims to build a comprehensive sales data pipeline for data processi
         psql postgres
 4. Create the required database, user, and password as needed. Follow the steps below to create them. After step 3
     Run the below commands as in the same order
-    # Create Role
+### Create Role
     CREATE ROLE data_processor WITH LOGIN PASSWORD 'data_1234';
-    # Create DB Permission
+### Create DB Permission
     ALTER ROLE data_processor CREATEDB;
-    # List Users to validate
+### List Users to validate
     \du
-    # Exit using ctrl d
-    # Login with data_engineer
+### Exit using ctrl d
+### Login with data_engineer
     psql postgres -U data_processor
-    # Create database
+### Create database
     CREATE DATABASE sale_data_pipeline_db;
-   # List the database
+### List the database
    \l
-
-   
-   Now the database is created. 
+    Now the database is created. 
 5. Edit database.ini with the required details based on step 4
    host=localhost
    database=<< >>>>
