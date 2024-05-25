@@ -32,7 +32,7 @@ Python is installed. Brew is installed (I have installed postgres using brew)
     CREATE DATABASE sale_data_pipeline_db;
 ##### List the database
    \l
-    Now the database is created. 
+##### Now the database is created. 
 #### 5. Edit database.ini with the required details based on step 4
    host=localhost
    database=<< >>>>
