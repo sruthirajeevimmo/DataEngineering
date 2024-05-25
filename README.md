@@ -26,7 +26,7 @@ Python is installed. Brew is installed (I have installed postgres using brew)
 ##### List Users to validate
     \du
 ##### Exit using ctrl d
-##### Login with data_engineer
+##### Login with data_processor
     psql postgres -U data_processor
 ##### Create database
     CREATE DATABASE sale_data_pipeline_db;
