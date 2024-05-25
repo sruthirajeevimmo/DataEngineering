@@ -7,7 +7,7 @@ This project aims to build a comprehensive sales data pipeline for data processi
 Python is installed. Brew is installed (I have installed postgres using brew)
 #### Python installation link : https://www.python.org/downloads/
 #### Brew https://docs.brew.sh/Installation
-#####I am using mac os. In mac we can run the below command :
+##### I am using mac os. In mac we can run the below command :
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 ## Installation Guide
