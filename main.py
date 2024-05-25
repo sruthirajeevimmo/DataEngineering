@@ -12,6 +12,7 @@ import csv
 
 class DataProcessor:
     def __init__(self):
+        # Initialising paths
         json_user = "files/user_data_json.json"
         json_wthr= "files/weather_data_json.json"
         csv_user= "files/user_data_csv.csv"
@@ -32,7 +33,7 @@ class DataProcessor:
         with open(self.local_path_user_json, 'w', encoding='utf-8') as file:
             json.dump(data, file, ensure_ascii=False, indent=4)
         print(f"Data downloaded and saved to {self.local_path_user_json}")
-
+        
         raw_data.raise_for_status() 
         extracted_data = []
         for entry in data:
@@ -127,31 +128,33 @@ class DataProcessor:
         host = params['host']
         port = params['port']
         database = params['database']
+        #creating stg_sales
         engine = create_engine(f'postgresql://{username}:{password}@{host}:{port}/{database}')
         df = pd.read_csv(self.sales_csv)
-        df.to_sql('stg_sales', con=engine, index=False, if_exists='replace')  # Use 'append' if you want to add to an existing table
+        df.to_sql('stg_sales', con=engine, index=False, if_exists='replace') 
 
         with engine.connect() as connection:
             result = connection.execute(text("SELECT * FROM stg_sales LIMIT 5;"))
             for row in result:
                 print(row)
-
+        #creating stg_users
         df = pd.read_csv(self.local_path_user_csv)
         df.to_sql('stg_users', con=engine, index=False, if_exists='replace')  
         with engine.connect() as connection:
             result = connection.execute(text("SELECT * FROM stg_users LIMIT 5;"))
             for row in result:
-                print(row)# Use 'append' if you want to add to an existing table
+                print(row)
     
         df = pd.read_csv(self.local_path_wthr_csv)
         df.to_sql('stg_weather', con=engine, index=False, if_exists='replace')  
+        #creating stg_Weather
         with engine.connect() as connection:
             result = connection.execute(text("SELECT * FROM stg_weather LIMIT 5;"))
             for row in result:
-                print(row)# Use
+                print(row)
 
     def transform(self):
-        """ Create tables in the PostgreSQL database"""
+        """ Create fct and dim tables in the PostgreSQL database"""
         sql = (
         
         """INSERT INTO d_users
@@ -187,7 +190,7 @@ class DataProcessor:
 
 
     def aggregate_table_transform(self):
-    
+        """ Create agg tables in the PostgreSQL database"""
         sql = (
         """
          DROP TABLE IF EXISTS TOT_SALES_PER_CUSTOMER;
